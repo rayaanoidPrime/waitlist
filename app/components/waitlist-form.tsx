@@ -1,51 +1,56 @@
-"use client"
+"use client";
 
-import { useState, useEffect } from "react"
-import { useActionState } from "react"
-import { joinWaitlist } from "../actions/waitlist"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Loader2, ArrowRight } from "lucide-react"
-import { useToast } from "@/components/ui/use-toast"
-import { motion } from "framer-motion"
+import { useState, useEffect } from "react";
+import { useFormState } from "react-dom";
+import { joinWaitlist } from "../actions/waitlist";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Loader2, ArrowRight } from "lucide-react";
+import { useToast } from "@/hooks/use-toast";
+import { motion } from "framer-motion";
 
 interface WaitlistFormProps {
-  onSuccess: (count: number) => void
+  onSuccess: (count: number) => void;
 }
 
 export function WaitlistForm({ onSuccess }: WaitlistFormProps) {
-  const [state, formAction, isPending] = useActionState(joinWaitlist, null)
-  const [email, setEmail] = useState("")
-  const { toast } = useToast()
+  const [state, formAction] = useFormState(joinWaitlist, null);
+  const [email, setEmail] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const { toast } = useToast();
+
+  useEffect(() => {
+    if (state?.success || state?.success === false) {
+      setIsLoading(false);
+    }
+  }, [state]);
 
   useEffect(() => {
     if (state?.success) {
       toast({
         title: "You're on the list!",
         description: state.message,
-        duration: 5000,
-      })
+      });
       if (state.count) {
-        onSuccess(state.count)
+        onSuccess(state.count);
       }
-      setEmail("")
+      setEmail("");
     } else if (state?.success === false) {
       toast({
         title: "Something went wrong",
         description: state.message,
-        variant: "destructive",
-        duration: 5000,
-      })
+      });
     }
-  }, [state, toast, onSuccess])
-
-  const handleSubmit = async (formData: FormData) => {
-    await formAction(formData)
-  }
+  }, [state, toast, onSuccess]);
 
   return (
     <motion.form
-      action={handleSubmit}
+      onSubmit={async (e) => {
+        e.preventDefault();
+        setIsLoading(true);
+        const formData = new FormData(e.currentTarget);
+        formAction(formData);
+      }}
       className="w-full space-y-4 mb-8"
       initial={{ opacity: 0, y: 10 }}
       animate={{ opacity: 1, y: 0 }}
@@ -67,11 +72,13 @@ export function WaitlistForm({ onSuccess }: WaitlistFormProps) {
         </div>
         <Button
           type="submit"
-          disabled={isPending}
-          className="bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-500 hover:to-blue-400 text-white font-medium px-6 py-6 rounded-xl transition-all duration-300 ease-in-out focus:outline-none"
+          disabled={isLoading}
+          className="bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-500 hover:to-blue-400 text-white font-medium px-6 py-6 rounded-xl transition-all duration-300 ease-in-out focus:outline-none min-w-[180px]"
         >
-          {isPending ? (
-            <Loader2 className="h-5 w-5 animate-spin" />
+          {isLoading ? (
+            <div className="flex items-center gap-2">
+              <Loader2 className="h-5 w-5 animate-spin" />
+            </div>
           ) : (
             <div className="flex items-center gap-2">
               <span>Get Early Access</span>
@@ -81,9 +88,9 @@ export function WaitlistForm({ onSuccess }: WaitlistFormProps) {
         </Button>
       </div>
       <p className="text-gray-400 text-xs text-center sm:text-left">
-        Join the HireLens AI waitlist for exclusive early access. No credit card required.
+        Join the HireLens AI waitlist for exclusive early access. No credit card
+        required.
       </p>
     </motion.form>
-  )
+  );
 }
-

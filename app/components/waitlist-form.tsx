@@ -1,0 +1,89 @@
+"use client"
+
+import { useState, useEffect } from "react"
+import { useActionState } from "react"
+import { joinWaitlist } from "../actions/waitlist"
+import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
+import { Loader2, ArrowRight } from "lucide-react"
+import { useToast } from "@/components/ui/use-toast"
+import { motion } from "framer-motion"
+
+interface WaitlistFormProps {
+  onSuccess: (count: number) => void
+}
+
+export function WaitlistForm({ onSuccess }: WaitlistFormProps) {
+  const [state, formAction, isPending] = useActionState(joinWaitlist, null)
+  const [email, setEmail] = useState("")
+  const { toast } = useToast()
+
+  useEffect(() => {
+    if (state?.success) {
+      toast({
+        title: "You're on the list!",
+        description: state.message,
+        duration: 5000,
+      })
+      if (state.count) {
+        onSuccess(state.count)
+      }
+      setEmail("")
+    } else if (state?.success === false) {
+      toast({
+        title: "Something went wrong",
+        description: state.message,
+        variant: "destructive",
+        duration: 5000,
+      })
+    }
+  }, [state, toast, onSuccess])
+
+  const handleSubmit = async (formData: FormData) => {
+    await formAction(formData)
+  }
+
+  return (
+    <motion.form
+      action={handleSubmit}
+      className="w-full space-y-4 mb-8"
+      initial={{ opacity: 0, y: 10 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5, delay: 0.3 }}
+    >
+      <div className="flex flex-col sm:flex-row gap-3">
+        <div className="flex-1 overflow-hidden rounded-xl bg-white/5 p-1 ring-1 ring-white/10 focus-within:ring-2 focus-within:ring-blue-500">
+          <Input
+            id="email"
+            name="email"
+            type="email"
+            placeholder="Enter your email"
+            required
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            aria-describedby="email-error"
+            className="w-full border-0 bg-transparent text-white placeholder:text-gray-400 focus:ring-0 focus:border-transparent focus-visible:border-transparent focus:outline-none active:ring-0 active:outline-none focus-visible:ring-0 focus-visible:outline-none active:border-transparent focus-visible:ring-offset-0"
+          />
+        </div>
+        <Button
+          type="submit"
+          disabled={isPending}
+          className="bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-500 hover:to-blue-400 text-white font-medium px-6 py-6 rounded-xl transition-all duration-300 ease-in-out focus:outline-none"
+        >
+          {isPending ? (
+            <Loader2 className="h-5 w-5 animate-spin" />
+          ) : (
+            <div className="flex items-center gap-2">
+              <span>Get Early Access</span>
+              <ArrowRight className="h-4 w-4" />
+            </div>
+          )}
+        </Button>
+      </div>
+      <p className="text-gray-400 text-xs text-center sm:text-left">
+        Join the HireLens AI waitlist for exclusive early access. No credit card required.
+      </p>
+    </motion.form>
+  )
+}
+

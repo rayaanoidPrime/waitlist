@@ -32,12 +32,7 @@ export function WaitlistForm({ onSuccess }: WaitlistFormProps) {
       }
       setEmail("");
     } else if (state?.success === false) {
-      toast("Uh Oh, something went wrong!", {
-        action: {
-          label: "Undo",
-          onClick: () => console.log("Undo"),
-        },
-      });
+      toast.error(state.message);
     }
   }, [state, toast, onSuccess]);
 

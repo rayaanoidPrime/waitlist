@@ -1,7 +1,6 @@
-"use client"
+"use client";
 
-import { WaitlistSignup } from "./components/waitlist-signup"
-import { Toaster } from "@/components/ui/toaster"
+import { WaitlistSignup } from "./components/waitlist-signup";
 
 const backgroundStyle = `
   .bg-grid-pattern {
@@ -45,7 +44,7 @@ const backgroundStyle = `
     pointer-events: none;
     z-index: 1;
   }
-`
+`;
 
 export default function Home() {
   return (
@@ -57,18 +56,6 @@ export default function Home() {
       <div className="content w-full">
         <WaitlistSignup />
       </div>
-      <Toaster
-        toastOptions={{
-          style: {
-            background: "rgb(15 23 42)",
-            color: "white",
-            border: "1px solid rgb(51 65 85)",
-          },
-          className: "rounded-xl",
-          duration: 5000,
-        }}
-      />
     </main>
-  )
+  );
 }
-

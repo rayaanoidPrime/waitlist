@@ -6,7 +6,7 @@ import { joinWaitlist } from "../actions/waitlist";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Loader2, ArrowRight } from "lucide-react";
-import { useToast } from "@/hooks/use-toast";
+import { useToast } from "@/components/ui/use-toast";
 import { motion } from "framer-motion";
 
 interface WaitlistFormProps {

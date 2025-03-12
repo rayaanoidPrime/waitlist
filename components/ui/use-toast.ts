@@ -8,6 +8,7 @@ type ToasterToast = {
   title?: string;
   description?: string;
   action?: React.ReactNode;
+  variant?: "default" | "destructive" | "success"; // Add this
 };
 
 const actionTypes = {
@@ -131,7 +132,7 @@ function dispatch(action: Action) {
 
 type Toast = Omit<ToasterToast, "id">;
 
-function toast({ ...props }: Toast) {
+function toast({ variant, ...props }: Toast) {
   const id = genId();
 
   const update = (props: ToasterToast) =>
@@ -148,6 +149,7 @@ function toast({ ...props }: Toast) {
     toast: {
       ...props,
       id,
+      variant, // Include variant
     },
   });
 
@@ -157,7 +159,6 @@ function toast({ ...props }: Toast) {
     update,
   };
 }
-
 function useToast() {
   const [state, setState] = React.useState<State>(memoryState);
 

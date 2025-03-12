@@ -30,6 +30,7 @@ export function WaitlistForm({ onSuccess }: WaitlistFormProps) {
       toast({
         title: "You're on the list!",
         description: state.message,
+        variant: "success",
       });
       if (state.count) {
         onSuccess(state.count);
@@ -39,6 +40,7 @@ export function WaitlistForm({ onSuccess }: WaitlistFormProps) {
       toast({
         title: "Something went wrong",
         description: state.message,
+        variant: "destructive",
       });
     }
   }, [state, toast, onSuccess]);

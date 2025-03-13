@@ -1,5 +1,5 @@
 interface EmailTemplateProps {
-  email: string
+  email: string;
 }
 
 export function EmailTemplate({ email }: EmailTemplateProps) {
@@ -8,7 +8,7 @@ export function EmailTemplate({ email }: EmailTemplateProps) {
     <html lang="en">
       <head>
           <meta charset="UTF-8">
-          <title>Welcome to ResumeAI Waitlist</title>
+          <title>Welcome to TalentScan AI Waitlist</title>
       </head>
       <body style="font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif; line-height: 1.5; padding: 20px; background-color: #f9fafb;">
           <div style="max-width: 600px; margin: 0 auto; background-color: white; border-radius: 12px; padding: 40px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);">
@@ -22,9 +22,9 @@ export function EmailTemplate({ email }: EmailTemplateProps) {
                           <path d="M12 12v8"></path>
                       </svg>
                   </div>
-                  <h1 style="color: #1e3a8a; font-size: 28px; margin: 20px 0 5px;">Welcome to HireLens AI!</h1>
+                  <h1 style="color: #1e3a8a; font-size: 28px; margin: 20px 0 5px;">Welcome to TalentScan AI!</h1>
                   <p style="color: #6b7280; font-size: 16px; margin-bottom: 0;">You're on the waitlist for our agentic AI resume screening solution</p>
-                  <p style="color: #9ca3af; font-size: 12px; margin-top: 5px;">A FutureLabs product</p>
+                  <p style="color: #9ca3af; font-size: 12px; margin-top: 5px;">A Futurelab Studios Product</p>
               </div>
               
               <p style="color: #374151; font-size: 16px; margin-bottom: 24px;">
@@ -32,11 +32,11 @@ export function EmailTemplate({ email }: EmailTemplateProps) {
               </p>
               
               <p style="color: #374151; font-size: 16px; margin-bottom: 24px;">
-                  Thank you for joining our exclusive waitlist! We've received your email address (${email}) and you're now in line for early access to HireLens AI.
+                  Thank you for joining our exclusive waitlist! We've received your email address (${email}) and you're now in line for early access to TalentScan AI.
               </p>
               
               <div style="background-color: #f3f4f6; border-radius: 8px; padding: 20px; margin-bottom: 30px;">
-                  <h2 style="color: #1e3a8a; font-size: 18px; margin-top: 0; margin-bottom: 15px;">What makes HireLens AI revolutionary:</h2>
+                  <h2 style="color: #1e3a8a; font-size: 18px; margin-top: 0; margin-bottom: 15px;">What makes TalentScan AI revolutionary:</h2>
                   <ul style="color: #4b5563; padding-left: 20px; margin: 0;">
                       <li style="margin-bottom: 10px;"><strong>Agentic AI Analysis</strong> - Our AI agent autonomously evaluates resumes with human-like reasoning</li>
                       <li style="margin-bottom: 10px;"><strong>Bulk Processing</strong> - Screen 1000+ resumes in minutes, not days</li>
@@ -50,7 +50,7 @@ export function EmailTemplate({ email }: EmailTemplateProps) {
               </p>
               
               <p style="color: #374151; font-size: 16px; margin-bottom: 8px;">Best regards,</p>
-              <p style="color: #1e3a8a; font-size: 16px; font-weight: 600; margin-top: 0;">The HireLens AI Team</p>
+              <p style="color: #1e3a8a; font-size: 16px; font-weight: 600; margin-top: 0;">The TalentScan AI Team</p>
               
               <div style="margin-top: 40px; padding-top: 20px; border-top: 1px solid #e5e7eb; text-align: center; color: #9ca3af; font-size: 14px;">
                   <p>&copy; 2025 FutureLabs. All rights reserved.</p>
@@ -59,6 +59,5 @@ export function EmailTemplate({ email }: EmailTemplateProps) {
           </div>
       </body>
     </html>
-  `
+  `;
 }
-

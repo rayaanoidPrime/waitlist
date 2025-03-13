@@ -81,8 +81,8 @@ export function WaitlistForm({ onSuccess }: WaitlistFormProps) {
         </Button>
       </div>
       <p className="text-gray-400 text-xs text-center sm:text-left">
-        Join the HireLens AI waitlist for exclusive early access. No credit card
-        required.
+        Join the TalentScan AI waitlist for exclusive early access. No credit
+        card required.
       </p>
     </motion.form>
   );

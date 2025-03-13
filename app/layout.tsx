@@ -15,8 +15,11 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "HireLens AI",
-  description: "Made with <3 by FutureLabs",
+  title: "TalentScan AI",
+  description: "Made with <3 by Futurelab Studios",
+  icons: {
+    icon: "/icon.svg",
+  },
 };
 
 export default function RootLayout({

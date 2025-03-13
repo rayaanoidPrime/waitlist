@@ -1,34 +1,38 @@
-"use client"
+"use client";
 
-import { useState, useEffect } from "react"
-import { getWaitlistCount } from "../actions/waitlist"
-import { XIcon } from "./icons/x-icon"
-import { DiscordIcon } from "./icons/discord-icon"
-import { LinkedInIcon } from "./icons/linkedin-icon"
-import { Avatar } from "./avatar"
-import { SocialIcon } from "./social-icon"
-import { WaitlistForm } from "./waitlist-form"
-import { FeatureList } from "./feature-list"
-import { DocumentScan } from "./icons/document-scan"
-import { motion } from "framer-motion"
-import { Sparkles, Users, LineChart, Clock } from "lucide-react"
+import { useState, useEffect } from "react";
+import { getWaitlistCount } from "../actions/waitlist";
+import { XIcon } from "./icons/x-icon";
+import { DiscordIcon } from "./icons/discord-icon";
+import { LinkedInIcon } from "./icons/linkedin-icon";
+import { Avatar } from "./avatar";
+import { SocialIcon } from "./social-icon";
+import { WaitlistForm } from "./waitlist-form";
+import { FeatureList } from "./feature-list";
+import { DocumentScan } from "./icons/document-scan";
+import { motion } from "framer-motion";
+import { Sparkles, Users, LineChart, Clock } from "lucide-react";
+import { TalentScanIcon } from "./TalentScanIcon";
 
 export function WaitlistSignup() {
-  const [waitlistCount, setWaitlistCount] = useState(0)
+  const [waitlistCount, setWaitlistCount] = useState(0);
 
   useEffect(() => {
-    getWaitlistCount().then((count) => setWaitlistCount(count + 100))
-  }, [])
+    getWaitlistCount().then((count) => setWaitlistCount(count + 100));
+  }, []);
 
   const handleSuccess = (count: number) => {
-    setWaitlistCount(count + 100)
-  }
+    setWaitlistCount(count + 100);
+  };
 
   const statsItems = [
     { icon: <Clock className="w-4 h-4" />, text: "Save 20+ hours per week" },
-    { icon: <Users className="w-4 h-4" />, text: "Process 1000+ resumes daily" },
+    {
+      icon: <Users className="w-4 h-4" />,
+      text: "Process 1000+ resumes daily",
+    },
     { icon: <LineChart className="w-4 h-4" />, text: "93% hiring accuracy" },
-  ]
+  ];
 
   return (
     <div className="w-full max-w-6xl mx-auto p-8 flex flex-col justify-between min-h-screen">
@@ -43,11 +47,15 @@ export function WaitlistSignup() {
           <div className="flex flex-col items-start gap-1 mb-6">
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-purple-600 rounded-lg flex items-center justify-center">
-                <DocumentScan className="w-5 h-5 text-white" />
+                <TalentScanIcon className="w-5 h-5 text-white" />
               </div>
-              <h3 className="text-white font-semibold text-xl">HireLens AI</h3>
+              <h3 className="text-white font-semibold text-xl">
+                TalentScan AI
+              </h3>
             </div>
-            <span className="text-gray-400 text-xs ml-1 pl-12">A FutureLabs product</span>
+            <span className="text-gray-400 text-xs ml-1 pl-12">
+              A Futurelab Studios Product
+            </span>
           </div>
 
           <h1 className="text-5xl sm:text-6xl font-bold mb-6 leading-tight">
@@ -58,8 +66,12 @@ export function WaitlistSignup() {
 
           <div className="relative mb-8">
             <p className="text-xl text-gray-300 leading-relaxed">
-              Surface the best candidates from <span className="font-semibold text-white">thousands of resumes</span>{" "}
-              with our intelligent AI agent. Get detailed insights for every hiring decision.
+              Surface the best candidates from{" "}
+              <span className="font-semibold text-white">
+                thousands of resumes
+              </span>{" "}
+              with our intelligent AI agent. Get detailed insights for every
+              hiring decision.
             </p>
           </div>
 
@@ -84,7 +96,8 @@ export function WaitlistSignup() {
               <Avatar initials="MK" index={2} />
             </div>
             <p className="text-white font-medium">
-              <span className="font-bold text-blue-400">{waitlistCount}+</span> HR professionals on the waitlist
+              <span className="font-bold text-blue-400">{waitlistCount}+</span>{" "}
+              HR professionals on the waitlist
             </p>
           </div>
         </motion.div>
@@ -105,8 +118,8 @@ export function WaitlistSignup() {
 
               <div className="flex justify-between items-center mb-6">
                 <h3 className="text-white font-semibold flex items-center gap-2">
-                  <DocumentScan className="w-5 h-5 text-blue-400" />
-                  HireLens Analysis
+                  <TalentScanIcon className="w-5 h-5 text-blue-400" />
+                  TalentScan Analysis
                 </h3>
                 <div className="flex items-center gap-1">
                   <div className="w-3 h-3 rounded-full bg-red-500"></div>
@@ -122,8 +135,10 @@ export function WaitlistSignup() {
                   <Sparkles className="w-4 h-4" /> AI Agent Insight
                 </h4>
                 <p className="text-gray-300 text-sm">
-                  "Based on analysis of 1,247 resumes, candidate Sarah Chen is the strongest match with 94% alignment to
-                  required skills and 3+ years of relevant experience in machine learning deployment."
+                  "Based on analysis of 1,247 resumes, candidate Sarah Chen is
+                  the strongest match with 94% alignment to required skills and
+                  3+ years of relevant experience in machine learning
+                  deployment."
                 </p>
               </div>
             </div>
@@ -145,7 +160,7 @@ export function WaitlistSignup() {
           icon={<XIcon className="w-5 h-5" />}
         />
         <SocialIcon
-          href="https://linkedin.com"
+          href="https://www.linkedin.com/company/futurelabstudios/"
           target="_blank"
           rel="noopener noreferrer"
           aria-label="LinkedIn"
@@ -160,6 +175,5 @@ export function WaitlistSignup() {
         />
       </motion.div>
     </div>
-  )
+  );
 }
-

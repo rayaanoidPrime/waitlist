@@ -39,7 +39,7 @@ export async function joinWaitlist(prevState: any, formData: FormData) {
 
     // Send welcome email using Resend
     const { data, error } = await resend.emails.send({
-      from: "TalentScan AI <noreply@waitlist.Futurelab Studios.com>",
+      from: "TalentScan AI <noreply@waitlist.futurelabstudios.com>",
       to: email.toString(),
       subject: "Welcome to TalentScan AI Waitlist!",
       html: EmailTemplate({ email: email.toString() }),

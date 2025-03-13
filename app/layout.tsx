@@ -20,6 +20,27 @@ export const metadata: Metadata = {
   icons: {
     icon: "/icon.svg",
   },
+  openGraph: {
+    title: "TalentScan AI",
+    description: "Intelligent Resume Screening powered by AI",
+    siteName: "TalentScan AI",
+    images: [
+      {
+        url: "/icon.svg",
+        width: 32,
+        height: 32,
+        alt: "TalentScan AI Logo",
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary",
+    title: "TalentScan AI",
+    description: "Intelligent Resume Screening powered by AI",
+    images: ["/icon.svg"],
+  },
 };
 
 export default function RootLayout({
